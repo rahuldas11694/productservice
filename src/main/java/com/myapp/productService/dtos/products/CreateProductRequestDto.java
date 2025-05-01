@@ -1,4 +1,4 @@
-package com.myapp.productService.dtos;
+package com.myapp.productService.dtos.products;
 
 import com.myapp.productService.models.Product;
 import lombok.Getter;
