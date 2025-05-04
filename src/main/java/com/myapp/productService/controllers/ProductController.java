@@ -2,6 +2,7 @@ package com.myapp.productService.controllers;
 
 import com.myapp.productService.dtos.ErrorResponseDto;
 import com.myapp.productService.dtos.products.*;
+import com.myapp.productService.exceptions.ProductNotFoundException;
 import com.myapp.productService.models.Product;
 import com.myapp.productService.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,10 +14,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+//    @Value("${productService}")
+//    private String productServiceType;
 
+//    @Qualifier()
     private ProductService productService;
+//
+//    @Autowired
+//    private String name;
 
-    public ProductController(@Qualifier("fakeStoreProductService") ProductService productService) {
+
+
+    public ProductController(@Qualifier("dbProductService") ProductService productService) {
         this.productService = productService;
     }
 
@@ -62,7 +71,7 @@ public class ProductController {
     public PatchProductResponseDto updateProduct(
             @PathVariable("id") Long productId,
             @RequestBody CreateProductDto productDto
-    ) {
+    ) throws ProductNotFoundException {
         Product product = productService.partialUpdateProduct(
                 productId,
                 productDto.toProduct()
@@ -74,6 +83,7 @@ public class ProductController {
         return response;
     }
 
+    @PutMapping("")
     public void replaceProduct() {}
 
 }
