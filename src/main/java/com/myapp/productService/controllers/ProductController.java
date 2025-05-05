@@ -86,4 +86,9 @@ public class ProductController {
     @PutMapping("")
     public void replaceProduct() {}
 
+//    @RequestMapping(name = "NAMAN", value = "/products/")
+//    public String tabgushijhd() {
+//        return "Magic";
+//    }
+
 }
